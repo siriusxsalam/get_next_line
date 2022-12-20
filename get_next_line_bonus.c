@@ -25,7 +25,11 @@ char	*get_all_line(int fd, char *str)
 	{
 		byte = read(fd, buff, BUFFER_SIZE);
 		if (byte == -1)
+		{
+			if (str)
+				free(str);
 			return (free(buff), NULL);
+		}
 		buff[byte] = '\0';
 		str = ft_strjoin(str, buff);
 		if (ft_strchr(str, '\n'))
